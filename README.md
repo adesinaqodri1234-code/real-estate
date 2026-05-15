@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Real Estate Landing Page
 
 ## Overview
@@ -31,3 +32,6 @@ This project is open-source and available under the [MIT License](LICENSE).
 - Thanks to the web development community for continuous support and guidance.
 
 ---
+=======
+# real-estate
+>>>>>>> 75e00b8a04b0bede4284861ceae32633936d08db
