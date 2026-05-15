@@ -1,0 +1,978 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login | Humble Realty</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Rubik:wght@600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: #f5f5f5;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* ================= NAVBAR ================= */
+        .navbar {
+            width: 100%;
+            height: 80px;
+            padding: 0 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: #fff;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            flex-wrap: nowrap;
+        }
+
+        .nav-brand {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            flex-shrink: 0;
+            text-decoration: none;
+        }
+
+        .nav-logo {
+            width: 44px;
+            height: 44px;
+            background: #69B99D;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            font-family: 'Rubik', sans-serif;
+            font-size: 1rem;
+            font-weight: 700;
+            flex-shrink: 0;
+        }
+
+        .nav-site-name {
+            font-family: 'Rubik', sans-serif;
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: #1F2744;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            flex-shrink: 0;
+        }
+
+        .nav-links a {
+            padding: 0 12px;
+            text-decoration: none;
+            color: #8E8E8E;
+            font-size: 15px;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: #69B99D;
+        }
+
+        .nav-links a.active {
+            color: #69B99D;
+            font-weight: 600;
+        }
+
+        /* ================= LOGIN MAIN ================= */
+        .login-page {
+            flex: 1;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            min-height: calc(100vh - 80px);
+        }
+
+        /* Left panel — image/brand side */
+        .login-left {
+            background: linear-gradient(135deg, #1F2744 0%, #054457 60%, #69B99D 100%);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: flex-start;
+            padding: 80px 60px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .login-left::before {
+            content: '';
+            position: absolute;
+            top: -100px;
+            right: -100px;
+            width: 400px;
+            height: 400px;
+            background: rgba(105,185,157,0.15);
+            border-radius: 50%;
+        }
+
+        .login-left::after {
+            content: '';
+            position: absolute;
+            bottom: -80px;
+            left: -80px;
+            width: 300px;
+            height: 300px;
+            background: rgba(255,255,255,0.05);
+            border-radius: 50%;
+        }
+
+        .login-left-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .login-left .brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 60px;
+            text-decoration: none;
+        }
+
+        .login-left .brand-logo {
+            width: 52px;
+            height: 52px;
+            background: #69B99D;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            font-family: 'Rubik', sans-serif;
+            font-size: 1.1rem;
+            font-weight: 700;
+        }
+
+        .login-left .brand-name {
+            font-family: 'Rubik', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #fff;
+        }
+
+        .login-left h1 {
+            font-family: 'Rubik', sans-serif;
+            font-size: 42px;
+            font-weight: 700;
+            color: #fff;
+            line-height: 1.2;
+            margin-bottom: 20px;
+        }
+
+        .login-left h1 span {
+            color: #69B99D;
+        }
+
+        .login-left p {
+            color: rgba(255,255,255,0.75);
+            font-size: 16px;
+            line-height: 1.7;
+            max-width: 380px;
+            margin-bottom: 50px;
+        }
+
+        .login-stats {
+            display: flex;
+            gap: 40px;
+        }
+
+        .stat {
+            text-align: left;
+        }
+
+        .stat-number {
+            font-family: 'Rubik', sans-serif;
+            font-size: 28px;
+            font-weight: 700;
+            color: #69B99D;
+        }
+
+        .stat-label {
+            font-size: 13px;
+            color: rgba(255,255,255,0.6);
+            margin-top: 2px;
+        }
+
+        /* Right panel — form side */
+        .login-right {
+            background: #fff;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 60px 70px;
+        }
+
+        .login-form-container {
+            width: 100%;
+            max-width: 400px;
+        }
+
+        .login-form-container h2 {
+            font-family: 'Rubik', sans-serif;
+            font-size: 28px;
+            font-weight: 700;
+            color: #1F2744;
+            margin-bottom: 8px;
+        }
+
+        .login-form-container .welcome-text {
+            color: #8E8E8E;
+            font-size: 14px;
+            margin-bottom: 36px;
+        }
+
+        /* Tabs */
+        .auth-tabs {
+            display: flex;
+            background: #f5f5f5;
+            border-radius: 10px;
+            padding: 4px;
+            margin-bottom: 32px;
+        }
+
+        .auth-tab {
+            flex: 1;
+            padding: 10px;
+            text-align: center;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 500;
+            color: #8E8E8E;
+            transition: all 0.3s ease;
+            border: none;
+            background: none;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .auth-tab.active {
+            background: #fff;
+            color: #1F2744;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            font-weight: 600;
+        }
+
+        /* Form */
+        .form-panel {
+            display: none;
+        }
+
+        .form-panel.active {
+            display: block;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 13px;
+            font-weight: 600;
+            color: #1F2744;
+            margin-bottom: 8px;
+        }
+
+        .input-wrapper {
+            position: relative;
+        }
+
+        .input-wrapper i {
+            position: absolute;
+            left: 14px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #aaa;
+            font-size: 14px;
+        }
+
+        .input-wrapper input {
+            width: 100%;
+            padding: 13px 14px 13px 40px;
+            border: 1.5px solid #e8e8e8;
+            border-radius: 10px;
+            font-size: 14px;
+            font-family: 'Poppins', sans-serif;
+            color: #1F2744;
+            background: #fafafa;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+            outline: none;
+        }
+
+        .input-wrapper input:focus {
+            border-color: #69B99D;
+            box-shadow: 0 0 0 3px rgba(105,185,157,0.12);
+            background: #fff;
+        }
+
+        .toggle-password {
+            position: absolute;
+            right: 14px;
+            top: 50%;
+            transform: translateY(-50%);
+            cursor: pointer;
+            color: #aaa;
+            font-size: 14px;
+            background: none;
+            border: none;
+            padding: 0;
+        }
+
+        .toggle-password:hover {
+            color: #69B99D;
+        }
+
+        .form-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 24px;
+        }
+
+        .remember-me {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 13px;
+            color: #8E8E8E;
+            cursor: pointer;
+        }
+
+        .remember-me input[type="checkbox"] {
+            accent-color: #69B99D;
+            width: 15px;
+            height: 15px;
+        }
+
+        .forgot-link {
+            font-size: 13px;
+            color: #69B99D;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .forgot-link:hover {
+            text-decoration: underline;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 14px;
+            background: #69B99D;
+            color: #fff;
+            border: none;
+            border-radius: 10px;
+            font-size: 15px;
+            font-weight: 600;
+            font-family: 'Poppins', sans-serif;
+            cursor: pointer;
+            transition: background 0.3s ease, transform 0.2s ease;
+            margin-bottom: 20px;
+        }
+
+        .submit-btn:hover {
+            background: #54a88c;
+            transform: translateY(-1px);
+        }
+
+        .divider {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 20px;
+            color: #ccc;
+            font-size: 13px;
+        }
+
+        .divider::before,
+        .divider::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: #eee;
+        }
+
+        .social-login {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 24px;
+        }
+
+        .social-btn {
+            flex: 1;
+            padding: 11px;
+            border: 1.5px solid #e8e8e8;
+            border-radius: 10px;
+            background: #fff;
+            cursor: pointer;
+            font-size: 13px;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 500;
+            color: #1F2744;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            transition: border-color 0.3s ease, background 0.3s ease;
+            text-decoration: none;
+        }
+
+        .social-btn:hover {
+            border-color: #69B99D;
+            background: #f8fffe;
+        }
+
+        .social-btn i {
+            font-size: 16px;
+        }
+
+        .social-btn.google i { color: #DB4437; }
+        .social-btn.facebook i { color: #4267B2; }
+
+        .switch-text {
+            text-align: center;
+            font-size: 13px;
+            color: #8E8E8E;
+        }
+
+        .switch-text a {
+            color: #69B99D;
+            font-weight: 600;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .switch-text a:hover {
+            text-decoration: underline;
+        }
+
+        /* Name row for signup */
+        .name-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 14px;
+        }
+
+        /* ================= FOOTER ================= */
+        .footer-section {
+            background: #111;
+            color: #ddd;
+            padding: 70px 0;
+            width: 100%;
+        }
+
+        .wrapper {
+            width: 90%;
+            max-width: 1200px;
+            margin: auto;
+        }
+
+        .footer-section .wrapper {
+            display: grid;
+            grid-template-columns: 1.5fr 2fr;
+            gap: 60px;
+        }
+
+        .footer-section .col-right {
+            display: flex;
+            gap: 40px;
+            justify-content: space-between;
+        }
+
+        .footer-section .group {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .footer-section .heading {
+            font-weight: 600;
+            color: #fff;
+            font-size: 15px;
+            margin-bottom: 4px;
+        }
+
+        .footer-section a {
+            text-decoration: none;
+            color: #aaa;
+            font-size: 14px;
+            transition: color 0.3s;
+        }
+
+        .footer-section a:hover {
+            color: #69B99D;
+        }
+
+        .footer-section .description {
+            margin: 16px 0 24px;
+            font-size: 14px;
+            color: #aaa;
+            line-height: 1.7;
+        }
+
+        .newsletter-form label {
+            font-size: 13px;
+            font-weight: 600;
+            color: #fff;
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        .input-field {
+            display: flex;
+        }
+
+        .input-field input[type="email"] {
+            padding: 10px;
+            border: none;
+            flex: 1;
+            font-family: 'Poppins', sans-serif;
+            font-size: 14px;
+            outline: none;
+        }
+
+        .input-field button {
+            padding: 10px 18px;
+            background: #69B99D;
+            border: none;
+            color: #fff;
+            cursor: pointer;
+            font-weight: 600;
+            font-family: 'Poppins', sans-serif;
+            transition: background 0.3s;
+        }
+
+        .input-field button:hover {
+            background: #54a88c;
+        }
+
+        .social-icon {
+            display: flex;
+            gap: 12px;
+            margin-top: 8px;
+        }
+
+        .social-icon a {
+            display: inline-block;
+        }
+
+        .social-icon img {
+            width: 28px;
+            transition: transform 0.3s;
+        }
+
+        .social-icon img:hover {
+            transform: scale(1.15);
+        }
+
+        /* ================= RESPONSIVE ================= */
+        @media (max-width: 992px) {
+            .login-page {
+                grid-template-columns: 1fr;
+            }
+
+            .login-left {
+                padding: 60px 40px;
+                min-height: 320px;
+            }
+
+            .login-left h1 {
+                font-size: 32px;
+            }
+
+            .login-right {
+                padding: 50px 30px;
+            }
+
+            .footer-section .wrapper {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-section .col-right {
+                flex-wrap: wrap;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links a:not(.nav-btn) {
+                display: none;
+            }
+
+            .login-stats {
+                gap: 24px;
+            }
+
+            .login-right {
+                padding: 40px 20px;
+            }
+
+            .name-row {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ================= NAVBAR ================= -->
+    <nav class="navbar">
+        <a href="index.html" class="nav-brand">
+            <div class="nav-logo">SQ</div>
+            <span class="nav-site-name">Humble Realty</span>
+        </a>
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="property_index.html">Property</a>
+            <a href="about_index.html">About</a>
+            <a href="services_index.html">Service</a>
+            <a href="contact_index.html">Contact</a>
+        </div>
+    </nav>
+
+    <!-- ================= LOGIN PAGE ================= -->
+    <div class="login-page">
+
+        <!-- Left Panel -->
+        <div class="login-left">
+            <div class="login-left-content">
+                <a href="index.html" class="brand">
+                    <div class="brand-logo">SQ</div>
+                    <span class="brand-name">Humble Realty</span>
+                </a>
+                <h1>Find Your <span>Dream</span> Home Today</h1>
+                <p>Join thousands of happy homeowners who found their perfect property through Humble Realty. Your journey starts here.</p>
+                <div class="login-stats">
+                    <div class="stat">
+                        <div class="stat-number">250+</div>
+                        <div class="stat-label">Properties Sold</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-number">550+</div>
+                        <div class="stat-label">Happy Clients</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-number">4.8★</div>
+                        <div class="stat-label">Average Rating</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Right Panel -->
+        <div class="login-right">
+            <div class="login-form-container">
+                <h2>Welcome Back</h2>
+                <p class="welcome-text">Sign in to your account or create a new one.</p>
+
+                <!-- Tabs -->
+                <div class="auth-tabs">
+                    <button class="auth-tab active" onclick="switchTab('login')">Sign In</button>
+                    <button class="auth-tab" onclick="switchTab('signup')">Create Account</button>
+                </div>
+
+                <!-- LOGIN FORM -->
+                <div class="form-panel active" id="login-panel">
+                    <div class="form-group">
+                        <label for="login-email">Email Address</label>
+                        <div class="input-wrapper">
+                            <i class="fas fa-envelope"></i>
+                            <input type="email" id="login-email" placeholder="you@example.com">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="login-password">Password</label>
+                        <div class="input-wrapper">
+                            <i class="fas fa-lock"></i>
+                            <input type="password" id="login-password" placeholder="Enter your password">
+                            <button class="toggle-password" onclick="togglePassword('login-password', this)" type="button">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <label class="remember-me">
+                            <input type="checkbox"> Remember me
+                        </label>
+                        <a href="#" class="forgot-link">Forgot password?</a>
+                    </div>
+                    <button class="submit-btn" onclick="handleLogin()">Sign In</button>
+                    <div class="divider">or continue with</div>
+                    <div class="social-login">
+                        <a href="#" class="social-btn google">
+                            <i class="fab fa-google"></i> Google
+                        </a>
+                        <a href="#" class="social-btn facebook">
+                            <i class="fab fa-facebook-f"></i> Facebook
+                        </a>
+                    </div>
+                    <p class="switch-text">
+                        Don't have an account? <a onclick="switchTab('signup')">Create one</a>
+                    </p>
+                </div>
+
+                <!-- SIGNUP FORM -->
+                <div class="form-panel" id="signup-panel">
+                    <div class="name-row">
+                        <div class="form-group">
+                            <label for="first-name">First Name</label>
+                            <div class="input-wrapper">
+                                <i class="fas fa-user"></i>
+                                <input type="text" id="first-name" placeholder="John">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="last-name">Last Name</label>
+                            <div class="input-wrapper">
+                                <i class="fas fa-user"></i>
+                                <input type="text" id="last-name" placeholder="Doe">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="signup-email">Email Address</label>
+                        <div class="input-wrapper">
+                            <i class="fas fa-envelope"></i>
+                            <input type="email" id="signup-email" placeholder="you@example.com">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="signup-password">Password</label>
+                        <div class="input-wrapper">
+                            <i class="fas fa-lock"></i>
+                            <input type="password" id="signup-password" placeholder="Create a password">
+                            <button class="toggle-password" onclick="togglePassword('signup-password', this)" type="button">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="confirm-password">Confirm Password</label>
+                        <div class="input-wrapper">
+                            <i class="fas fa-lock"></i>
+                            <input type="password" id="confirm-password" placeholder="Repeat your password">
+                            <button class="toggle-password" onclick="togglePassword('confirm-password', this)" type="button">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <button class="submit-btn" onclick="handleSignup()">Create Account</button>
+                    <div class="divider">or continue with</div>
+                    <div class="social-login">
+                        <a href="#" class="social-btn google">
+                            <i class="fab fa-google"></i> Google
+                        </a>
+                        <a href="#" class="social-btn facebook">
+                            <i class="fab fa-facebook-f"></i> Facebook
+                        </a>
+                    </div>
+                    <p class="switch-text">
+                        Already have an account? <a onclick="switchTab('login')">Sign in</a>
+                    </p>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- ================= FOOTER ================= -->
+    <footer class="footer-section">
+        <div class="wrapper">
+            <div class="col-left">
+                <img src="assets/logo.png" alt="Humble Realty logo" style="width:120px;">
+                <p class="description">We have built our reputation as true local area experts.</p>
+                <div class="newsletter-form">
+                    <label for="footer-email">Subscribe to our newsletter</label>
+                    <div class="input-field">
+                        <input type="email" id="footer-email" placeholder="Enter your email address">
+                        <button type="button" onclick="handleNewsletterSubmit()">Submit</button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-right">
+                <div class="group">
+                    <p class="heading">Service</p>
+                    <a href="about_index.html">About us</a>
+                    <a href="services_index.html">Careers</a>
+                    <a href="services_index.html">Terms &amp; Conditions</a>
+                    <a href="services_index.html">Privacy &amp; Policy</a>
+                </div>
+                <div class="group">
+                    <p class="heading">Community</p>
+                    <a href="property_index.html">Find agents</a>
+                    <a href="services_index.html">Lifestyle</a>
+                    <a href="services_index.html">Legal Notice</a>
+                </div>
+                <div class="group">
+                    <p class="heading">Follow us on</p>
+                    <div class="social-icon">
+                        <a href="https://youtube.com" target="_blank" rel="noopener noreferrer" aria-label="YouTube">
+                            <img src="assets/Youtube.png" alt="YouTube">
+                        </a>
+                        <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+                            <img src="assets/Instagram.png" alt="Instagram">
+                        </a>
+                        <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+                            <img src="assets/Facebook.png" alt="Facebook">
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // ================= TAB SWITCHER =================
+        function switchTab(tab) {
+            document.querySelectorAll('.auth-tab').forEach(t => t.classList.remove('active'));
+            document.querySelectorAll('.form-panel').forEach(p => p.classList.remove('active'));
+
+            if (tab === 'login') {
+                document.querySelectorAll('.auth-tab')[0].classList.add('active');
+                document.getElementById('login-panel').classList.add('active');
+            } else {
+                document.querySelectorAll('.auth-tab')[1].classList.add('active');
+                document.getElementById('signup-panel').classList.add('active');
+            }
+        }
+
+        // ================= TOGGLE PASSWORD =================
+        function togglePassword(inputId, btn) {
+            const input = document.getElementById(inputId);
+            const icon = btn.querySelector('i');
+            if (input.type === 'password') {
+                input.type = 'text';
+                icon.classList.replace('fa-eye', 'fa-eye-slash');
+            } else {
+                input.type = 'password';
+                icon.classList.replace('fa-eye-slash', 'fa-eye');
+            }
+        }
+
+        // ================= LOGIN HANDLER =================
+        function handleLogin() {
+            const email = document.getElementById('login-email').value.trim();
+            const password = document.getElementById('login-password').value.trim();
+
+            if (!email || !email.includes('@')) {
+                showToast('Please enter a valid email address.', 'error');
+                return;
+            }
+            if (!password || password.length < 6) {
+                showToast('Password must be at least 6 characters.', 'error');
+                return;
+            }
+
+            showToast('Signing you in...', 'success');
+            setTimeout(() => {
+                window.location.href = 'index.html';
+            }, 1500);
+        }
+
+        // ================= SIGNUP HANDLER =================
+        function handleSignup() {
+            const firstName = document.getElementById('first-name').value.trim();
+            const lastName = document.getElementById('last-name').value.trim();
+            const email = document.getElementById('signup-email').value.trim();
+            const password = document.getElementById('signup-password').value.trim();
+            const confirm = document.getElementById('confirm-password').value.trim();
+
+            if (!firstName || !lastName) {
+                showToast('Please enter your full name.', 'error');
+                return;
+            }
+            if (!email || !email.includes('@')) {
+                showToast('Please enter a valid email address.', 'error');
+                return;
+            }
+            if (!password || password.length < 6) {
+                showToast('Password must be at least 6 characters.', 'error');
+                return;
+            }
+            if (password !== confirm) {
+                showToast('Passwords do not match.', 'error');
+                return;
+            }
+
+            showToast('Account created! Welcome to Humble Realty.', 'success');
+            setTimeout(() => {
+                window.location.href = 'index.html';
+            }, 1500);
+        }
+
+        // ================= NEWSLETTER =================
+        function handleNewsletterSubmit() {
+            const input = document.getElementById('footer-email');
+            const email = input.value.trim();
+            if (!email || !email.includes('@')) {
+                showToast('Please enter a valid email address.', 'error');
+                return;
+            }
+            showToast('Thank you for subscribing!', 'success');
+            input.value = '';
+        }
+
+        // ================= TOAST =================
+        function showToast(message, type) {
+            const existing = document.querySelector('.toast');
+            if (existing) existing.remove();
+
+            const toast = document.createElement('div');
+            toast.className = 'toast';
+            toast.textContent = message;
+
+            Object.assign(toast.style, {
+                position: 'fixed',
+                bottom: '30px',
+                right: '30px',
+                background: type === 'success' ? '#69B99D' : '#e74c3c',
+                color: '#fff',
+                padding: '14px 24px',
+                borderRadius: '10px',
+                fontSize: '14px',
+                fontFamily: "'Poppins', sans-serif",
+                fontWeight: '500',
+                boxShadow: '0 8px 25px rgba(0,0,0,0.15)',
+                zIndex: '9999',
+                opacity: '0',
+                transform: 'translateY(20px)',
+                transition: 'opacity 0.3s ease, transform 0.3s ease'
+            });
+
+            document.body.appendChild(toast);
+
+            requestAnimationFrame(() => {
+                toast.style.opacity = '1';
+                toast.style.transform = 'translateY(0)';
+            });
+
+            setTimeout(() => {
+                toast.style.opacity = '0';
+                toast.style.transform = 'translateY(20px)';
+                setTimeout(() => toast.remove(), 300);
+            }, 3500);
+        }
+    </script>
+
+</body>
+</html>

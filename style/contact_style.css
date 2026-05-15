@@ -1,0 +1,405 @@
+:root {
+    --primary-font-family: 'Poppins', sans-serif;
+    --title-font-family: 'Rubik', sans-serif;
+    --h1-font-size: 64px;
+    --h2-font-size: 48px;
+    --font-size-semibold-1: 28px;
+    --font-size-semibold-2: 24px;
+    --font-size-md: 18px;
+    --font-size-regular: 16px;
+    --font-size-small: 12px;
+    --primary-acent-color: #69B99D;
+    --primary-bg-color: #F5F5F5;
+    --card-bag-color: #DEDCDA;
+    --light-background: #F8F9FE;
+    --text-light: #8E8E8E;
+    --bg-white: #fff;
+    --title-color: #1F2744;
+    --spacing-sm: 8px;
+    --spacing-md: 16px;
+    --spacing-lg: 32px;
+    --spacing-xl: 64px;
+    --standard-width: 1144px;
+}
+
+/* FIX: * reset must come before body so it doesn't override body styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--primary-font-family);
+    color: var(--text-light);
+    width: 100%;
+    margin: 0;
+    padding: 0; /* FIX: removed padding that was pushing layout off */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #F5F5F5;
+    overflow-x: hidden;
+}
+
+.wrapper {
+    width: 90%;
+    max-width: 1200px;
+    margin: auto;
+}
+
+.title-color {
+    color: var(--title-color);
+}
+
+/* ================= BUTTONS ================= */
+.button-with-bg {
+    padding: 12px 28px;
+    background-color: var(--primary-acent-color);
+    color: var(--bg-white);
+    border: 1px solid var(--primary-acent-color);
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 600;
+    font-family: var(--primary-font-family);
+    font-size: var(--font-size-regular);
+    cursor: pointer;
+    transition: 0.3s ease-in-out;
+    display: inline-block;
+}
+
+.button-with-bg:hover {
+    background-color: transparent;
+    color: var(--primary-acent-color);
+}
+
+.button-without-bg {
+    border: none;
+    background-color: transparent;
+    color: var(--primary-acent-color);
+    font-size: var(--font-size-regular);
+    font-family: var(--primary-font-family);
+    cursor: pointer;
+    transition: transform 0.3s ease;
+    text-decoration: none;
+}
+
+.button-without-bg:hover {
+    transform: scale(1.05);
+}
+
+.square-tag {
+    display: inline-block;
+    padding: 6px 14px;
+    background: #e8f8f5;
+    color: #1abc9c;
+    font-size: 13px;
+    font-weight: 600;
+    border-radius: 6px;
+    margin-bottom: 15px;
+}
+
+.subtitle {
+    font-family: var(--title-font-family);
+    font-size: 3.5rem;
+    font-weight: bold;
+    color: #054457;
+    margin-bottom: 16px;
+}
+
+/* ================= NAVBAR ================= */
+.header-section {
+    width: 100%;
+    /* FIX: removed fixed height: 754px — contact page has no hero image needing it */
+}
+
+.navbar {
+    width: 100%;
+    height: 80px;
+    padding: var(--spacing-md) 5%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #fff;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+    position: relative;
+    z-index: 10;
+}
+
+/* FIX: nav-brand/nav-logo/nav-site-name to match the fixed HTML */
+.nav-brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.nav-logo {
+    width: 44px;
+    height: 44px;
+    background: #69B99D;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    font-family: 'Rubik', sans-serif;
+    font-size: 1rem;
+    font-weight: 700;
+    flex-shrink: 0;
+}
+
+.nav-site-name {
+    font-family: 'Rubik', sans-serif;
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: #1F2744;
+}
+
+.navbar .links {
+    display: flex;
+    align-items: center;
+}
+
+.navbar .links a {
+    padding: 0 calc(var(--spacing-md) * 1.2);
+    text-decoration: none;
+    color: var(--text-light);
+    font-size: var(--font-size-regular);
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+.navbar .links a:hover {
+    color: var(--primary-acent-color);
+}
+
+.navbar .navbar-buttons {
+    display: flex;
+    align-items: center;
+    margin-left: var(--spacing-xl);
+    gap: 16px;
+}
+
+/* ================= CONTACT HERO ================= */
+.contact-hero {
+    width: 100%;
+    background: linear-gradient(rgba(0,0,0,0.65), rgba(0,0,0,0.65)),
+                url('https://images.unsplash.com/photo-1497366754035-f200968a6e72?w=1200') center/cover no-repeat;
+    padding: 120px 20px;
+    text-align: center;
+    color: #fff;
+}
+
+.contact-hero-content h1 {
+    font-size: 48px;
+    font-weight: 700;
+    margin-bottom: 15px;
+    font-family: var(--title-font-family);
+    color: #fff;
+}
+
+.contact-hero-content p {
+    font-size: 18px;
+    opacity: 0.9;
+}
+
+/* ================= CONTACT CONTENT ================= */
+.contact-content {
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    gap: 50px;
+    padding: 90px 8%;
+    background: #f8f9fb;
+    width: 100%;
+}
+
+/* ================= INFO CARDS ================= */
+.contact-info {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 25px;
+}
+
+.info-card {
+    background: #fff;
+    padding: 35px 25px;
+    border-radius: 16px;
+    box-shadow: 0 12px 35px rgba(0,0,0,0.06);
+    transition: transform 0.3s ease;
+}
+
+.info-card:hover {
+    transform: translateY(-6px);
+}
+
+.info-card i {
+    font-size: 22px;
+    color: #1abc9c;
+    margin-bottom: 15px;
+    display: block; /* FIX: block so margin-bottom actually works */
+}
+
+.info-card h3 {
+    font-size: 17px;
+    margin-bottom: 10px;
+    font-weight: 600;
+    color: var(--title-color);
+}
+
+.info-card p {
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 6px;
+}
+
+/* FIX: make phone/email links in info cards look natural */
+.info-card a {
+    color: #666;
+    text-decoration: none;
+    transition: color 0.3s;
+    font-size: 14px;
+}
+
+.info-card a:hover {
+    color: #1abc9c;
+}
+
+/* ================= CONTACT FORM ================= */
+.contact-form-section {
+    background: #fff;
+    padding: 45px;
+    border-radius: 18px;
+    box-shadow: 0 12px 35px rgba(0,0,0,0.06);
+}
+
+.contact-form-section h2 {
+    font-size: 22px;
+    margin-bottom: 25px;
+    font-weight: 600;
+    color: var(--title-color);
+}
+
+/* FIX: .contact-form is now a div not a form element — styles still apply */
+.contact-form .form-group {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+/* FIX: .input-wrap ensures each input in the row takes equal space */
+.contact-form .input-wrap {
+    flex: 1;
+}
+
+.contact-form input,
+.contact-form textarea {
+    width: 100%;
+    padding: 15px;
+    border-radius: 10px;
+    border: 1px solid #ddd;
+    font-size: 14px;
+    font-family: var(--primary-font-family);
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    background: #fff;
+    color: var(--title-color);
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+    border-color: #1abc9c;
+    box-shadow: 0 0 0 3px rgba(26,188,156,0.12);
+    outline: none;
+}
+
+/* FIX: subject input needs its own margin so it's spaced from the row above */
+.contact-form > input[id="subject"] {
+    display: block;
+    margin-bottom: 0;
+}
+
+.contact-form textarea {
+    resize: none;
+    margin-top: 15px;
+    display: block;
+}
+
+/* FIX: sr-only for accessible hidden labels */
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0,0,0,0);
+    white-space: nowrap;
+    border: 0;
+}
+
+.submit-btn {
+    margin-top: 20px;
+    background: #1abc9c;
+    color: #fff;
+    padding: 14px 28px;
+    border: none;
+    border-radius: 10px;
+    font-size: var(--font-size-regular);
+    font-family: var(--primary-font-family);
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.submit-btn:hover {
+    background: #16a085;
+    transform: translateY(-2px);
+}
+
+/* ================= RESPONSIVE ================= */
+@media (max-width: 992px) {
+    .contact-content {
+        grid-template-columns: 1fr;
+        padding: 60px 5%;
+    }
+
+    .contact-info {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .contact-form .form-group {
+        flex-direction: column;
+    }
+
+    .contact-hero-content h1 {
+        font-size: 36px;
+    }
+
+    .navbar .links a {
+        padding: 0 calc(var(--spacing-md) * 0.8);
+    }
+
+    .navbar .navbar-buttons {
+        margin-left: var(--spacing-md);
+    }
+}
+
+@media (max-width: 768px) {
+    .navbar .links a:not(.button-with-bg):not(.button-without-bg) {
+        display: none;
+    }
+
+    .contact-info {
+        grid-template-columns: 1fr;
+    }
+
+    .contact-hero-content h1 {
+        font-size: 28px;
+    }
+
+    .contact-form-section {
+        padding: 25px;
+    }
+}
