@@ -631,6 +631,40 @@
                 grid-template-columns: 1fr;
             }
         }
+
+        .footer-logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 16px;
+    text-decoration: none !important;
+    color: inherit !important;
+    font-size: inherit !important;
+}
+
+.footer-logo-icon {
+    width: 44px !important;
+    height: 44px !important;
+    min-width: 44px;
+    background: #69B99D !important;
+    border-radius: 50% !important;
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+    color: #fff !important;
+    font-family: 'Rubik', sans-serif;
+    font-size: 1rem !important;
+    font-weight: 700;
+    flex-shrink: 0;
+}
+
+.footer-logo-name {
+    font-family: 'Rubik', sans-serif;
+    font-size: 1.3rem !important;
+    font-weight: 700;
+    color: #fff !important;
+}
+
     </style>
 </head>
 <body>
@@ -799,7 +833,10 @@
     <footer class="footer-section">
         <div class="wrapper">
             <div class="col-left">
-                <img src="assets/logo.png" alt="Humble Realty logo" style="width:120px;">
+                <a href="index.html" class="footer-logo">
+    <div class="footer-logo-icon">SQ</div>
+    <span class="footer-logo-name">Humble Realty</span>
+</a>
                 <p class="description">We have built our reputation as true local area experts.</p>
                 <div class="newsletter-form">
                     <label for="footer-email">Subscribe to our newsletter</label>

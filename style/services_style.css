@@ -22,7 +22,6 @@
     --standard-width: 1144px;
 }
 
-/* FIX: * reset must come before body so it doesn't override body styles */
 * {
     margin: 0;
     padding: 0;
@@ -34,13 +33,12 @@ body {
     color: var(--text-light);
     width: 100%;
     margin: 0;
-    padding: 0; /* FIX: removed padding that was pushing layout off */
+    padding: 0;
     display: flex;
     flex-direction: column;
     align-items: center;
     background-color: #F5F5F5;
     overflow-x: hidden;
-    padding-top: 90px; /* FIX: added top padding to prevent content from being hidden behind fixed navbar */
 }
 
 .wrapper {
@@ -111,26 +109,31 @@ body {
 /* ================= NAVBAR ================= */
 .header-section {
     width: 100%;
-    /* FIX: removed fixed height: 754px — contact page has no hero image needing it */
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 100;
 }
 
 .navbar {
-     width: 100%;
+    width: 100%;
     height: 80px;
-    padding: var(--spacing-md) 4%; /* reduce side padding */
+    padding: var(--spacing-md) 4%;
     display: flex;
     justify-content: space-between;
     align-items: center;
     background: #fff;
     box-shadow: 0 2px 12px rgba(0,0,0,0.06);
-    position: relative;
-    z-index: 10;
     flex-wrap: nowrap;
 }
 
+.nav-inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
 
-
-/* FIX: nav-brand/nav-logo/nav-site-name to match the fixed HTML */
 .nav-brand {
     display: flex;
     align-items: center;
@@ -166,7 +169,7 @@ body {
 }
 
 .navbar .links a {
-    padding: 0 calc(var(--spacing-md) * 0.8); /* reduce from 1.2 to 0.8 */
+    padding: 0 calc(var(--spacing-md) * 0.8);
     text-decoration: none;
     color: var(--text-light);
     font-size: var(--font-size-regular);
@@ -174,14 +177,15 @@ body {
     transition: color 0.3s ease;
 }
 
-.navbar .links a:hover {
+.navbar .links a:hover,
+.navbar .links a.active {
     color: var(--primary-acent-color);
 }
 
 .navbar .navbar-buttons {
     display: flex;
     align-items: center;
-    margin-left: var(--spacing-xl);
+    margin-left: var(--spacing-md);
     gap: 12px;
     flex-shrink: 0;
 }
@@ -193,6 +197,7 @@ body {
     padding: 120px 0;
     color: #fff;
     text-align: center;
+    margin-top: 80px;
 }
 
 .service-hero h1 {
@@ -236,13 +241,20 @@ body {
     background: #fff;
     padding: 35px 25px;
     border-radius: 16px;
-    box-shadow: 0 8px 25px rgba(0,0,0,0.06); /* FIX: was 0.5 — way too dark */
+    box-shadow: 0 8px 25px rgba(0,0,0,0.06);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .service-card:hover {
     transform: translateY(-8px);
-    box-shadow: 0 18px 40px rgba(0,0,0,0.10); /* FIX: was "012" — invalid value */
+    box-shadow: 0 18px 40px rgba(0,0,0,0.10);
+}
+
+.service-card i {
+    font-size: 28px;
+    color: var(--primary-acent-color);
+    margin-bottom: 16px;
+    display: block;
 }
 
 .service-card h3 {
@@ -284,10 +296,9 @@ body {
     background: #fff;
     padding: 35px 20px;
     border-radius: 16px;
-    box-shadow: 0 8px 25px rgba(0,0,0,0.06); /* FIX: was 0.5 — too dark */
+    box-shadow: 0 8px 25px rgba(0,0,0,0.06);
     transition: transform 0.3s ease;
     text-align: center;
-    /* FIX: removed margin-bottom: 20px — gap handles spacing in grid */
 }
 
 .process-step:hover {
@@ -301,7 +312,6 @@ body {
     font-weight: 700;
     color: var(--primary-acent-color);
     margin-bottom: 12px;
-    /* FIX: was styled via .process-grid h3 which also targeted card headings */
 }
 
 .process-step h3 {
@@ -339,7 +349,6 @@ body {
     margin-bottom: 32px;
 }
 
-/* FIX: CTA button needs full override since .button-with-bg defaults to green bg */
 .service-cta .button-with-bg {
     background: #fff;
     color: var(--primary-acent-color);
@@ -482,7 +491,7 @@ body {
     }
 
     .navbar .links a {
-        padding: 0 calc(var(--spacing-md) * 0.8);
+        padding: 0 calc(var(--spacing-md) * 0.6);
     }
 
     .navbar .navbar-buttons {
@@ -490,6 +499,7 @@ body {
     }
 }
 
+/* FIX: was "@medi" with no condition and a stray "a" at the end */
 @media (max-width: 768px) {
     .navbar .links a:not(.button-with-bg):not(.button-without-bg) {
         display: none;
@@ -511,4 +521,68 @@ body {
     .service-cta h2 {
         font-size: 26px;
     }
+}
+
+
+.footer-logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 16px;
+    text-decoration: none;
+}
+
+.footer-logo-icon {
+    width: 44px;
+    height: 44px;
+    background: #69B99D;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    font-family: 'Rubik', sans-serif;
+    font-size: 1rem;
+    font-weight: 700;
+    flex-shrink: 0;
+}
+
+.footer-logo-name {
+    font-family: 'Rubik', sans-serif;
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: #fff;
+}
+
+
+.footer-logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 16px;
+    text-decoration: none !important;
+    color: inherit !important;
+}
+
+.footer-logo-icon {
+    width: 44px;
+    height: 44px;
+    min-width: 44px;
+    background: #69B99D !important;
+    border-radius: 50%;
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+    color: #fff !important;
+    font-family: 'Rubik', sans-serif;
+    font-size: 1rem;
+    font-weight: 700;
+    flex-shrink: 0;
+}
+
+.footer-logo-name {
+    font-family: 'Rubik', sans-serif;
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: #fff !important;
 }

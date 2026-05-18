@@ -1,37 +1,43 @@
-<!DOCTYPE html> 
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About Us | Real Estate</title>
-    <script src="about_script.js" defer></script>
+    <title>About Us | Humble Realty</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Rubik:wght@600&display=swap" rel="stylesheet">    
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Rubik:wght@600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <link rel="stylesheet" href="./style/about_style.css">
+    <script src="about_script.js" defer></script>
 </head>
 <body>
-    <header class="header-section wrapper">
+
+    <!-- FIX: removed wrapper from header, nav spans full width -->
+    <header class="header-section">
         <nav class="navbar">
-    <div class="nav-brand">
-        <div class="nav-logo">SQ</div>
-        <span class="nav-site-name">Humble Realty</span>
-    </div>
-    <div class="links">
-        <a href="index.html">Home</a>
-        <a href="property_index.html">Property</a>
-        <a href="about_index.html">About</a>
-        <a href="services_index.html">Service</a>
-        <a href="contact_index.html">Contact</a>
-        <div class="navbar-buttons">
-            <button class="button-without-bg">Sign in</button>
-            <button class="button-with-bg">Login</button>
-        </div>
-    </div>
-</nav>
+            <div class="nav-brand">
+                <div class="nav-logo">SQ</div>
+                <span class="nav-site-name">Humble Realty</span>
+            </div>
+            <div class="links">
+                <a href="index.html">Home</a>
+                <a href="property_index.html">Property</a>
+                <a href="about_index.html" class="active">About</a>
+                <a href="services_index.html">Service</a>
+                <a href="contact_index.html">Contact</a>
+                <div class="navbar-buttons">
+                    <!-- FIX: changed from <button> to <a> links -->
+                    <a href="login.html" class="button-without-bg">Sign in</a>
+                    <a href="login.html" class="button-with-bg">Login</a>
+                </div>
+            </div>
+        </nav>
     </header>
+
     <main>
-        <section class="about hero">
+
+        <section class="about-hero">
             <div class="wrapper">
                 <span class="square-tag">About Us</span>
                 <h1>We Help You Find <br><span class="accent">Your Dream Home</span></h1>
@@ -118,13 +124,70 @@
                 <a href="property_index.html" class="button-with-bg">Browse Properties</a>
             </div>
         </section>
+
     </main>
 
+    <!-- FIX: replaced bare footer with full footer matching rest of site -->
     <footer class="footer-section">
         <div class="wrapper">
-            <p>© 2024 Humble Realty. All rights reserved.</p>
+            <div class="col-left">
+                <a href="index.html" class="footer-logo">
+                    <div class="footer-logo-icon">SQ</div>
+                    <span class="footer-logo-name">Humble Realty</span>
+                </a>
+                <p class="description">We have built our reputation as true local area experts.</p>
+                <div class="newsletter-form">
+                    <label for="footer-email">Subscribe to our newsletter</label>
+                    <div class="input-field">
+                        <input type="email" id="footer-email" placeholder="Enter your email address">
+                        <button type="button" onclick="handleNewsletterSubmit()">Submit</button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-right">
+                <div class="group">
+                    <p class="heading">Service</p>
+                    <a href="about_index.html">About us</a>
+                    <a href="services_index.html">Careers</a>
+                    <a href="services_index.html">Terms &amp; Conditions</a>
+                    <a href="services_index.html">Privacy &amp; Policy</a>
+                </div>
+                <div class="group">
+                    <p class="heading">Community</p>
+                    <a href="property_index.html">Find agents</a>
+                    <a href="services_index.html">Lifestyle</a>
+                    <a href="services_index.html">Legal Notice</a>
+                </div>
+                <div class="group">
+                    <p class="heading">Follow us on</p>
+                    <div class="social-icon">
+                        <a href="https://youtube.com" target="_blank" rel="noopener noreferrer" aria-label="YouTube">
+                            <img src="assets/Youtube.png" alt="YouTube">
+                        </a>
+                        <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+                            <img src="assets/Instagram.png" alt="Instagram">
+                        </a>
+                        <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+                            <img src="assets/Facebook.png" alt="Facebook">
+                        </a>
+                    </div>
+                </div>
+            </div>
         </div>
     </footer>
+
+    <script>
+        function handleNewsletterSubmit() {
+            const input = document.getElementById('footer-email');
+            const email = input.value.trim();
+            if (!email || !email.includes('@')) {
+                alert('Please enter a valid email address.');
+                return;
+            }
+            alert('Thank you for subscribing!');
+            input.value = '';
+        }
+    </script>
 
 </body>
 </html>
