@@ -670,3 +670,20 @@ body {
         margin-left: 0;
     }
 }
+@media (max-width: 768px) {
+
+    .links{
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .navbar{
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .navbar-buttons{
+        margin-top: 10px;
+    }
+}
