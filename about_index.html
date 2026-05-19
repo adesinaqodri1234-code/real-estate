@@ -32,6 +32,11 @@
                     <a href="login.html" class="button-with-bg">Login</a>
                 </div>
             </div>
+            <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+    <span></span>
+    <span></span>
+    <span></span>
+</button>
         </nav>
     </header>
 
@@ -187,6 +192,21 @@
             alert('Thank you for subscribing!');
             input.value = '';
         }
+        const hamburger = document.getElementById('hamburger');
+    const links = document.querySelector('.navbar .links') || document.querySelector('.nav-links');
+
+    hamburger.addEventListener('click', function () {
+        hamburger.classList.toggle('active');
+        links.classList.toggle('open');
+    });
+
+    // Close menu when a link is clicked
+    links.querySelectorAll('a').forEach(function(link) {
+        link.addEventListener('click', function() {
+            hamburger.classList.remove('active');
+            links.classList.remove('open');
+        });
+    });
     </script>
 
 </body>
