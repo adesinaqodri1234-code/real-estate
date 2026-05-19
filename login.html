@@ -9,11 +9,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Rubik:wght@600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body {
             font-family: 'Poppins', sans-serif;
@@ -85,14 +81,35 @@
             transition: color 0.3s ease;
         }
 
-        .nav-links a:hover {
-            color: #69B99D;
+        .nav-links a:hover { color: #69B99D; }
+
+        /* ================= HAMBURGER ================= */
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            justify-content: space-between;
+            width: 28px;
+            height: 20px;
+            cursor: pointer;
+            background: none;
+            border: none;
+            padding: 0;
+            z-index: 200;
+            flex-shrink: 0;
         }
 
-        .nav-links a.active {
-            color: #69B99D;
-            font-weight: 600;
+        .hamburger span {
+            display: block;
+            width: 100%;
+            height: 2.5px;
+            background: #1F2744;
+            border-radius: 3px;
+            transition: all 0.3s ease;
         }
+
+        .hamburger.active span:nth-child(1) { transform: translateY(8.75px) rotate(45deg); }
+        .hamburger.active span:nth-child(2) { opacity: 0; }
+        .hamburger.active span:nth-child(3) { transform: translateY(-8.75px) rotate(-45deg); }
 
         /* ================= LOGIN MAIN ================= */
         .login-page {
@@ -102,7 +119,6 @@
             min-height: calc(100vh - 80px);
         }
 
-        /* Left panel — image/brand side */
         .login-left {
             background: linear-gradient(135deg, #1F2744 0%, #054457 60%, #69B99D 100%);
             display: flex;
@@ -117,10 +133,8 @@
         .login-left::before {
             content: '';
             position: absolute;
-            top: -100px;
-            right: -100px;
-            width: 400px;
-            height: 400px;
+            top: -100px; right: -100px;
+            width: 400px; height: 400px;
             background: rgba(105,185,157,0.15);
             border-radius: 50%;
         }
@@ -128,18 +142,13 @@
         .login-left::after {
             content: '';
             position: absolute;
-            bottom: -80px;
-            left: -80px;
-            width: 300px;
-            height: 300px;
+            bottom: -80px; left: -80px;
+            width: 300px; height: 300px;
             background: rgba(255,255,255,0.05);
             border-radius: 50%;
         }
 
-        .login-left-content {
-            position: relative;
-            z-index: 1;
-        }
+        .login-left-content { position: relative; z-index: 1; }
 
         .login-left .brand {
             display: flex;
@@ -150,8 +159,7 @@
         }
 
         .login-left .brand-logo {
-            width: 52px;
-            height: 52px;
+            width: 52px; height: 52px;
             background: #69B99D;
             border-radius: 50%;
             display: flex;
@@ -179,9 +187,7 @@
             margin-bottom: 20px;
         }
 
-        .login-left h1 span {
-            color: #69B99D;
-        }
+        .login-left h1 span { color: #69B99D; }
 
         .login-left p {
             color: rgba(255,255,255,0.75);
@@ -191,14 +197,7 @@
             margin-bottom: 50px;
         }
 
-        .login-stats {
-            display: flex;
-            gap: 40px;
-        }
-
-        .stat {
-            text-align: left;
-        }
+        .login-stats { display: flex; gap: 40px; }
 
         .stat-number {
             font-family: 'Rubik', sans-serif;
@@ -213,7 +212,6 @@
             margin-top: 2px;
         }
 
-        /* Right panel — form side */
         .login-right {
             background: #fff;
             display: flex;
@@ -223,10 +221,7 @@
             padding: 60px 70px;
         }
 
-        .login-form-container {
-            width: 100%;
-            max-width: 400px;
-        }
+        .login-form-container { width: 100%; max-width: 400px; }
 
         .login-form-container h2 {
             font-family: 'Rubik', sans-serif;
@@ -236,13 +231,8 @@
             margin-bottom: 8px;
         }
 
-        .login-form-container .welcome-text {
-            color: #8E8E8E;
-            font-size: 14px;
-            margin-bottom: 36px;
-        }
+        .welcome-text { color: #8E8E8E; font-size: 14px; margin-bottom: 36px; }
 
-        /* Tabs */
         .auth-tabs {
             display: flex;
             background: #f5f5f5;
@@ -273,18 +263,10 @@
             font-weight: 600;
         }
 
-        /* Form */
-        .form-panel {
-            display: none;
-        }
+        .form-panel { display: none; }
+        .form-panel.active { display: block; }
 
-        .form-panel.active {
-            display: block;
-        }
-
-        .form-group {
-            margin-bottom: 20px;
-        }
+        .form-group { margin-bottom: 20px; }
 
         .form-group label {
             display: block;
@@ -294,9 +276,7 @@
             margin-bottom: 8px;
         }
 
-        .input-wrapper {
-            position: relative;
-        }
+        .input-wrapper { position: relative; }
 
         .input-wrapper i {
             position: absolute;
@@ -339,9 +319,7 @@
             padding: 0;
         }
 
-        .toggle-password:hover {
-            color: #69B99D;
-        }
+        .toggle-password:hover { color: #69B99D; }
 
         .form-row {
             display: flex;
@@ -361,8 +339,7 @@
 
         .remember-me input[type="checkbox"] {
             accent-color: #69B99D;
-            width: 15px;
-            height: 15px;
+            width: 15px; height: 15px;
         }
 
         .forgot-link {
@@ -372,9 +349,7 @@
             font-weight: 500;
         }
 
-        .forgot-link:hover {
-            text-decoration: underline;
-        }
+        .forgot-link:hover { text-decoration: underline; }
 
         .submit-btn {
             width: 100%;
@@ -391,10 +366,7 @@
             margin-bottom: 20px;
         }
 
-        .submit-btn:hover {
-            background: #54a88c;
-            transform: translateY(-1px);
-        }
+        .submit-btn:hover { background: #54a88c; transform: translateY(-1px); }
 
         .divider {
             display: flex;
@@ -405,19 +377,14 @@
             font-size: 13px;
         }
 
-        .divider::before,
-        .divider::after {
+        .divider::before, .divider::after {
             content: '';
             flex: 1;
             height: 1px;
             background: #eee;
         }
 
-        .social-login {
-            display: flex;
-            gap: 12px;
-            margin-bottom: 24px;
-        }
+        .social-login { display: flex; gap: 12px; margin-bottom: 24px; }
 
         .social-btn {
             flex: 1;
@@ -438,23 +405,12 @@
             text-decoration: none;
         }
 
-        .social-btn:hover {
-            border-color: #69B99D;
-            background: #f8fffe;
-        }
-
-        .social-btn i {
-            font-size: 16px;
-        }
-
+        .social-btn:hover { border-color: #69B99D; background: #f8fffe; }
+        .social-btn i { font-size: 16px; }
         .social-btn.google i { color: #DB4437; }
         .social-btn.facebook i { color: #4267B2; }
 
-        .switch-text {
-            text-align: center;
-            font-size: 13px;
-            color: #8E8E8E;
-        }
+        .switch-text { text-align: center; font-size: 13px; color: #8E8E8E; }
 
         .switch-text a {
             color: #69B99D;
@@ -463,16 +419,9 @@
             cursor: pointer;
         }
 
-        .switch-text a:hover {
-            text-decoration: underline;
-        }
+        .switch-text a:hover { text-decoration: underline; }
 
-        /* Name row for signup */
-        .name-row {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 14px;
-        }
+        .name-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
 
         /* ================= FOOTER ================= */
         .footer-section {
@@ -482,11 +431,7 @@
             width: 100%;
         }
 
-        .wrapper {
-            width: 90%;
-            max-width: 1200px;
-            margin: auto;
-        }
+        .wrapper { width: 90%; max-width: 1200px; margin: auto; }
 
         .footer-section .wrapper {
             display: grid;
@@ -494,17 +439,8 @@
             gap: 60px;
         }
 
-        .footer-section .col-right {
-            display: flex;
-            gap: 40px;
-            justify-content: space-between;
-        }
-
-        .footer-section .group {
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-        }
+        .footer-section .col-right { display: flex; gap: 40px; justify-content: space-between; }
+        .footer-section .group { display: flex; flex-direction: column; gap: 10px; }
 
         .footer-section .heading {
             font-weight: 600;
@@ -513,181 +449,117 @@
             margin-bottom: 4px;
         }
 
-        .footer-section a {
-            text-decoration: none;
-            color: #aaa;
-            font-size: 14px;
-            transition: color 0.3s;
-        }
-
-        .footer-section a:hover {
-            color: #69B99D;
-        }
-
-        .footer-section .description {
-            margin: 16px 0 24px;
-            font-size: 14px;
-            color: #aaa;
-            line-height: 1.7;
-        }
-
-        .newsletter-form label {
-            font-size: 13px;
-            font-weight: 600;
-            color: #fff;
-            display: block;
-            margin-bottom: 8px;
-        }
-
-        .input-field {
-            display: flex;
-        }
+        .footer-section a { text-decoration: none; color: #aaa; font-size: 14px; transition: color 0.3s; }
+        .footer-section a:hover { color: #69B99D; }
+        .footer-section .description { margin: 16px 0 24px; font-size: 14px; color: #aaa; line-height: 1.7; }
+        .newsletter-form label { font-size: 13px; font-weight: 600; color: #fff; display: block; margin-bottom: 8px; }
+        .input-field { display: flex; }
 
         .input-field input[type="email"] {
-            padding: 10px;
-            border: none;
-            flex: 1;
-            font-family: 'Poppins', sans-serif;
-            font-size: 14px;
-            outline: none;
+            padding: 10px; border: none; flex: 1;
+            font-family: 'Poppins', sans-serif; font-size: 14px; outline: none;
         }
 
         .input-field button {
-            padding: 10px 18px;
-            background: #69B99D;
-            border: none;
-            color: #fff;
-            cursor: pointer;
-            font-weight: 600;
-            font-family: 'Poppins', sans-serif;
-            transition: background 0.3s;
+            padding: 10px 18px; background: #69B99D; border: none;
+            color: #fff; cursor: pointer; font-weight: 600;
+            font-family: 'Poppins', sans-serif; transition: background 0.3s;
         }
 
-        .input-field button:hover {
-            background: #54a88c;
+        .input-field button:hover { background: #54a88c; }
+        .social-icon { display: flex; gap: 12px; margin-top: 8px; }
+        .social-icon a { display: inline-block; }
+        .social-icon img { width: 28px; transition: transform 0.3s; }
+        .social-icon img:hover { transform: scale(1.15); }
+
+        /* ================= FOOTER LOGO ================= */
+        .footer-logo {
+            display: flex; align-items: center; gap: 10px;
+            margin-bottom: 16px; text-decoration: none !important;
+            color: inherit !important; font-size: inherit !important;
         }
 
-        .social-icon {
-            display: flex;
-            gap: 12px;
-            margin-top: 8px;
+        .footer-logo-icon {
+            width: 44px !important; height: 44px !important; min-width: 44px;
+            background: #69B99D !important; border-radius: 50% !important;
+            display: flex !important; align-items: center; justify-content: center;
+            color: #fff !important; font-family: 'Rubik', sans-serif;
+            font-size: 1rem !important; font-weight: 700; flex-shrink: 0;
         }
 
-        .social-icon a {
-            display: inline-block;
-        }
-
-        .social-icon img {
-            width: 28px;
-            transition: transform 0.3s;
-        }
-
-        .social-icon img:hover {
-            transform: scale(1.15);
+        .footer-logo-name {
+            font-family: 'Rubik', sans-serif;
+            font-size: 1.3rem !important; font-weight: 700; color: #fff !important;
         }
 
         /* ================= RESPONSIVE ================= */
         @media (max-width: 992px) {
-            .login-page {
-                grid-template-columns: 1fr;
-            }
-
-            .login-left {
-                padding: 60px 40px;
-                min-height: 320px;
-            }
-
-            .login-left h1 {
-                font-size: 32px;
-            }
-
-            .login-right {
-                padding: 50px 30px;
-            }
-
-            .footer-section .wrapper {
-                grid-template-columns: 1fr;
-            }
-
-            .footer-section .col-right {
-                flex-wrap: wrap;
-            }
+            .login-page { grid-template-columns: 1fr; }
+            .login-left { padding: 60px 40px; min-height: 320px; }
+            .login-left h1 { font-size: 32px; }
+            .login-right { padding: 50px 30px; }
+            .footer-section .wrapper { grid-template-columns: 1fr; }
+            .footer-section .col-right { flex-wrap: wrap; }
         }
 
         @media (max-width: 768px) {
-            .nav-links a:not(.nav-btn) {
+            .hamburger { display: flex; }
+
+            .nav-links {
                 display: none;
+                position: fixed;
+                top: 80px; left: 0;
+                width: 100%;
+                height: calc(100vh - 80px);
+                background: #fff;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                gap: 36px;
+                z-index: 150;
             }
 
-            .login-stats {
-                gap: 24px;
+            .nav-links.open { display: flex; }
+
+            .nav-links a {
+                display: block !important;
+                font-size: 20px;
+                font-weight: 600;
+                color: #1F2744;
+                padding: 0;
             }
 
-            .login-right {
-                padding: 40px 20px;
-            }
+            .nav-links a:hover { color: #69B99D; }
 
-            .name-row {
-                grid-template-columns: 1fr;
-            }
+            .login-stats { gap: 24px; }
+            .login-right { padding: 40px 20px; }
+            .name-row { grid-template-columns: 1fr; }
         }
-
-        .footer-logo {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    margin-bottom: 16px;
-    text-decoration: none !important;
-    color: inherit !important;
-    font-size: inherit !important;
-}
-
-.footer-logo-icon {
-    width: 44px !important;
-    height: 44px !important;
-    min-width: 44px;
-    background: #69B99D !important;
-    border-radius: 50% !important;
-    display: flex !important;
-    align-items: center;
-    justify-content: center;
-    color: #fff !important;
-    font-family: 'Rubik', sans-serif;
-    font-size: 1rem !important;
-    font-weight: 700;
-    flex-shrink: 0;
-}
-
-.footer-logo-name {
-    font-family: 'Rubik', sans-serif;
-    font-size: 1.3rem !important;
-    font-weight: 700;
-    color: #fff !important;
-}
-
     </style>
 </head>
 <body>
 
-    <!-- ================= NAVBAR ================= -->
     <nav class="navbar">
         <a href="index.html" class="nav-brand">
             <div class="nav-logo">SQ</div>
             <span class="nav-site-name">Humble Realty</span>
         </a>
-        <div class="nav-links">
+        <div class="nav-links" id="nav-links">
             <a href="index.html">Home</a>
             <a href="property_index.html">Property</a>
             <a href="about_index.html">About</a>
             <a href="services_index.html">Service</a>
             <a href="contact_index.html">Contact</a>
         </div>
+        <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
     </nav>
 
-    <!-- ================= LOGIN PAGE ================= -->
     <div class="login-page">
 
-        <!-- Left Panel -->
         <div class="login-left">
             <div class="login-left-content">
                 <a href="index.html" class="brand">
@@ -713,13 +585,11 @@
             </div>
         </div>
 
-        <!-- Right Panel -->
         <div class="login-right">
             <div class="login-form-container">
                 <h2>Welcome Back</h2>
                 <p class="welcome-text">Sign in to your account or create a new one.</p>
 
-                <!-- Tabs -->
                 <div class="auth-tabs">
                     <button class="auth-tab active" onclick="switchTab('login')">Sign In</button>
                     <button class="auth-tab" onclick="switchTab('signup')">Create Account</button>
@@ -753,12 +623,12 @@
                     <button class="submit-btn" onclick="handleLogin()">Sign In</button>
                     <div class="divider">or continue with</div>
                     <div class="social-login">
-                       <a href="https://accounts.google.com/signin" target="_blank" rel="noopener noreferrer" class="social-btn google">
-    <i class="fab fa-google"></i> Google
-</a>
-<a href="https://www.facebook.com/login" target="_blank" rel="noopener noreferrer" class="social-btn facebook">
-    <i class="fab fa-facebook-f"></i> Facebook
-</a>
+                        <a href="https://accounts.google.com/signin" target="_blank" rel="noopener noreferrer" class="social-btn google">
+                            <i class="fab fa-google"></i> Google
+                        </a>
+                        <a href="https://www.facebook.com/login" target="_blank" rel="noopener noreferrer" class="social-btn facebook">
+                            <i class="fab fa-facebook-f"></i> Facebook
+                        </a>
                     </div>
                     <p class="switch-text">
                         Don't have an account? <a onclick="switchTab('signup')">Create one</a>
@@ -813,12 +683,12 @@
                     <button class="submit-btn" onclick="handleSignup()">Create Account</button>
                     <div class="divider">or continue with</div>
                     <div class="social-login">
-                       <a href="https://accounts.google.com/signin" target="_blank" rel="noopener noreferrer" class="social-btn google">
-    <i class="fab fa-google"></i> Google
-</a>
-<a href="https://www.facebook.com/login" target="_blank" rel="noopener noreferrer" class="social-btn facebook">
-    <i class="fab fa-facebook-f"></i> Facebook
-</a>
+                        <a href="https://accounts.google.com/signin" target="_blank" rel="noopener noreferrer" class="social-btn google">
+                            <i class="fab fa-google"></i> Google
+                        </a>
+                        <a href="https://www.facebook.com/login" target="_blank" rel="noopener noreferrer" class="social-btn facebook">
+                            <i class="fab fa-facebook-f"></i> Facebook
+                        </a>
                     </div>
                     <p class="switch-text">
                         Already have an account? <a onclick="switchTab('login')">Sign in</a>
@@ -829,14 +699,13 @@
         </div>
     </div>
 
-    <!-- ================= FOOTER ================= -->
     <footer class="footer-section">
         <div class="wrapper">
             <div class="col-left">
                 <a href="index.html" class="footer-logo">
-    <div class="footer-logo-icon">SQ</div>
-    <span class="footer-logo-name">Humble Realty</span>
-</a>
+                    <div class="footer-logo-icon">SQ</div>
+                    <span class="footer-logo-name">Humble Realty</span>
+                </a>
                 <p class="description">We have built our reputation as true local area experts.</p>
                 <div class="newsletter-form">
                     <label for="footer-email">Subscribe to our newsletter</label>
@@ -879,11 +748,26 @@
     </footer>
 
     <script>
+        // ================= HAMBURGER =================
+        const hamburger = document.getElementById('hamburger');
+        const navLinks = document.getElementById('nav-links');
+
+        hamburger.addEventListener('click', function () {
+            hamburger.classList.toggle('active');
+            navLinks.classList.toggle('open');
+        });
+
+        navLinks.querySelectorAll('a').forEach(function (link) {
+            link.addEventListener('click', function () {
+                hamburger.classList.remove('active');
+                navLinks.classList.remove('open');
+            });
+        });
+
         // ================= TAB SWITCHER =================
         function switchTab(tab) {
             document.querySelectorAll('.auth-tab').forEach(t => t.classList.remove('active'));
             document.querySelectorAll('.form-panel').forEach(p => p.classList.remove('active'));
-
             if (tab === 'login') {
                 document.querySelectorAll('.auth-tab')[0].classList.add('active');
                 document.getElementById('login-panel').classList.add('active');
@@ -910,20 +794,10 @@
         function handleLogin() {
             const email = document.getElementById('login-email').value.trim();
             const password = document.getElementById('login-password').value.trim();
-
-            if (!email || !email.includes('@')) {
-                showToast('Please enter a valid email address.', 'error');
-                return;
-            }
-            if (!password || password.length < 6) {
-                showToast('Password must be at least 6 characters.', 'error');
-                return;
-            }
-
+            if (!email || !email.includes('@')) { showToast('Please enter a valid email address.', 'error'); return; }
+            if (!password || password.length < 6) { showToast('Password must be at least 6 characters.', 'error'); return; }
             showToast('Signing you in...', 'success');
-            setTimeout(() => {
-                window.location.href = 'index.html';
-            }, 1500);
+            setTimeout(() => { window.location.href = 'index.html'; }, 1500);
         }
 
         // ================= SIGNUP HANDLER =================
@@ -933,38 +807,19 @@
             const email = document.getElementById('signup-email').value.trim();
             const password = document.getElementById('signup-password').value.trim();
             const confirm = document.getElementById('confirm-password').value.trim();
-
-            if (!firstName || !lastName) {
-                showToast('Please enter your full name.', 'error');
-                return;
-            }
-            if (!email || !email.includes('@')) {
-                showToast('Please enter a valid email address.', 'error');
-                return;
-            }
-            if (!password || password.length < 6) {
-                showToast('Password must be at least 6 characters.', 'error');
-                return;
-            }
-            if (password !== confirm) {
-                showToast('Passwords do not match.', 'error');
-                return;
-            }
-
+            if (!firstName || !lastName) { showToast('Please enter your full name.', 'error'); return; }
+            if (!email || !email.includes('@')) { showToast('Please enter a valid email address.', 'error'); return; }
+            if (!password || password.length < 6) { showToast('Password must be at least 6 characters.', 'error'); return; }
+            if (password !== confirm) { showToast('Passwords do not match.', 'error'); return; }
             showToast('Account created! Welcome to Humble Realty.', 'success');
-            setTimeout(() => {
-                window.location.href = 'index.html';
-            }, 1500);
+            setTimeout(() => { window.location.href = 'index.html'; }, 1500);
         }
 
         // ================= NEWSLETTER =================
         function handleNewsletterSubmit() {
             const input = document.getElementById('footer-email');
             const email = input.value.trim();
-            if (!email || !email.includes('@')) {
-                showToast('Please enter a valid email address.', 'error');
-                return;
-            }
+            if (!email || !email.includes('@')) { showToast('Please enter a valid email address.', 'error'); return; }
             showToast('Thank you for subscribing!', 'success');
             input.value = '';
         }
@@ -973,39 +828,22 @@
         function showToast(message, type) {
             const existing = document.querySelector('.toast');
             if (existing) existing.remove();
-
             const toast = document.createElement('div');
             toast.className = 'toast';
             toast.textContent = message;
-
             Object.assign(toast.style, {
-                position: 'fixed',
-                bottom: '30px',
-                right: '30px',
+                position: 'fixed', bottom: '30px', right: '30px',
                 background: type === 'success' ? '#69B99D' : '#e74c3c',
-                color: '#fff',
-                padding: '14px 24px',
-                borderRadius: '10px',
-                fontSize: '14px',
-                fontFamily: "'Poppins', sans-serif",
-                fontWeight: '500',
-                boxShadow: '0 8px 25px rgba(0,0,0,0.15)',
-                zIndex: '9999',
-                opacity: '0',
-                transform: 'translateY(20px)',
+                color: '#fff', padding: '14px 24px', borderRadius: '10px',
+                fontSize: '14px', fontFamily: "'Poppins', sans-serif", fontWeight: '500',
+                boxShadow: '0 8px 25px rgba(0,0,0,0.15)', zIndex: '9999',
+                opacity: '0', transform: 'translateY(20px)',
                 transition: 'opacity 0.3s ease, transform 0.3s ease'
             });
-
             document.body.appendChild(toast);
-
-            requestAnimationFrame(() => {
-                toast.style.opacity = '1';
-                toast.style.transform = 'translateY(0)';
-            });
-
+            requestAnimationFrame(() => { toast.style.opacity = '1'; toast.style.transform = 'translateY(0)'; });
             setTimeout(() => {
-                toast.style.opacity = '0';
-                toast.style.transform = 'translateY(20px)';
+                toast.style.opacity = '0'; toast.style.transform = 'translateY(20px)';
                 setTimeout(() => toast.remove(), 300);
             }, 3500);
         }
