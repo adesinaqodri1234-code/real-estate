@@ -164,4 +164,16 @@
 
         hamburger.addEventListener('click', function () {
             hamburger.classList.toggle('active');
-            navLinks.classList.toggle('open
+            navLinks.classList.toggle('open');
+        });
+
+        function handleNewsletterSubmit() {
+            const emailInput = document.getElementById('footer-email');
+            if (emailInput && emailInput.value.trim()) {
+                alert('Thank you for subscribing!');
+                emailInput.value = '';
+            }
+        }
+    </script>
+</body>
+</html>

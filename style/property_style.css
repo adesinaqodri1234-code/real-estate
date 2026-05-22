@@ -362,151 +362,197 @@ main {
 
 /* ================= FOOTER ================= */
 
+/* ================= FOOTER ================= */
+
 .footer-section {
-    background: #fff;
-    padding: 80px 20px;
+    width: 100%;
+    background: #f8f9fe;
+    padding: 70px 5% 40px;
+    margin-top: 80px;
 }
 
 .footer-section .wrapper {
+    max-width: 1200px;
+    margin: 0 auto;
     display: flex;
     justify-content: space-between;
-    gap: 40px;
+    gap: 60px;
     flex-wrap: wrap;
 }
 
-.col-left,
-.col-right {
+/* LEFT SIDE */
+.col-left {
     flex: 1;
+    min-width: 320px;
 }
 
 .footer-logo {
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 12px;
     text-decoration: none;
     margin-bottom: 20px;
 }
 
 .footer-logo-icon {
-    width: 44px;
-    height: 44px;
+    width: 48px;
+    height: 48px;
     background: #69B99D;
     border-radius: 50%;
     display: flex;
-    align-items: center;
     justify-content: center;
-    color: white;
-    font-weight: bold;
+    align-items: center;
+    color: #fff;
+    font-weight: 700;
+    font-family: 'Rubik', sans-serif;
 }
 
 .footer-logo-name {
-    font-size: 1.3rem;
+    font-size: 1.7rem;
     font-weight: 700;
     color: #69B99D;
+    font-family: 'Rubik', sans-serif;
 }
 
 .description {
-    margin-bottom: 25px;
+    max-width: 420px;
+    line-height: 1.8;
+    color: #666;
+    margin-bottom: 30px;
 }
 
+/* NEWSLETTER */
 .newsletter-form label {
     display: block;
-    margin-bottom: 10px;
+    margin-bottom: 12px;
+    font-weight: 500;
+    color: #1F2744;
 }
 
 .input-field {
     display: flex;
-    gap: 10px;
+    width: 100%;
+    max-width: 500px;
 }
 
 .input-field input {
     flex: 1;
-    padding: 12px;
+    height: 55px;
+    padding: 0 18px;
+    border: 1px solid #dcdcdc;
+    outline: none;
+    font-size: 15px;
+    background: #fff;
+}
+
+.input-field input:focus {
+    border-color: #69B99D;
 }
 
 .input-field button {
-    padding: 12px 20px;
-    background: #69B99D;
+    width: 130px;
     border: none;
-    color: white;
+    background: #69B99D;
+    color: #fff;
+    font-size: 15px;
+    font-weight: 500;
     cursor: pointer;
+    transition: 0.3s ease;
+}
+
+.input-field button:hover {
+    background: #5aa58b;
+}
+
+/* RIGHT SIDE */
+.col-right {
+    display: flex;
+    gap: 80px;
+    flex-wrap: wrap;
 }
 
 .group {
-    margin-bottom: 25px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
 }
 
 .group .heading {
+    font-size: 1.2rem;
     font-weight: 700;
-    margin-bottom: 15px;
     color: #1F2744;
+    margin-bottom: 10px;
 }
 
 .group a {
-    display: block;
-    margin-bottom: 10px;
     text-decoration: none;
-    color: #777;
+    color: #666;
+    transition: 0.3s ease;
 }
 
+.group a:hover {
+    color: #69B99D;
+    transform: translateX(3px);
+}
+
+/* SOCIALS */
 .social-icon {
     display: flex;
-    gap: 15px;
+    gap: 14px;
+    margin-top: 5px;
+}
+
+.social-icon a {
+    width: 42px;
+    height: 42px;
+    background: #fff;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: 0.3s ease;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+}
+
+.social-icon a:hover {
+    transform: translateY(-4px);
+    background: #69B99D;
 }
 
 .social-icon img {
-    width: 30px;
+    width: 18px;
+    height: 18px;
+    object-fit: contain;
 }
 
 /* ================= MOBILE ================= */
 
 @media (max-width: 768px) {
 
-    .navbar {
-        padding: 0 20px;
-    }
-
-    .hamburger {
-        display: flex;
-    }
-
-    .links {
-        position: absolute;
-        top: 80px;
-        left: 0;
-        width: 100%;
-        background: #fff;
-        flex-direction: column;
-        align-items: center;
-        padding: 30px 0;
-        gap: 25px;
-        display: none;
-        z-index: 100;
-        box-shadow: 0 10px 20px rgba(0,0,0,0.08);
-    }
-
-    .links.open {
-        display: flex;
-    }
-
-    .navbar-buttons {
-        flex-direction: column;
-        gap: 15px;
-    }
-
-    .property-hero h1 {
-        font-size: 36px;
-    }
-
-    .list-content h2 {
-        font-size: 28px;
+    .footer-section {
+        padding: 60px 20px 30px;
     }
 
     .footer-section .wrapper {
         flex-direction: column;
+        gap: 50px;
+    }
+
+    .col-right {
+        gap: 40px;
     }
 
     .input-field {
         flex-direction: column;
+        gap: 15px;
+    }
+
+    .input-field button {
+        width: 100%;
+        height: 50px;
+    }
+
+    .input-field input {
+        width: 100%;
     }
 }
