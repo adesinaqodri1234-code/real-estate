@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -31,7 +32,7 @@
                 </div>
             </div>
             <!-- HAMBURGER -->
-            <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+            <button class="hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false" aria-controls="nav-links">
                 <span></span>
                 <span></span>
                 <span></span>
@@ -158,20 +159,52 @@
     </footer>
 
     <script>
-        // ================= HAMBURGER =================
-        const hamburger = document.getElementById('hamburger');
-        const navLinks = document.getElementById('nav-links');
-
-        hamburger.addEventListener('click', function () {
-            hamburger.classList.toggle('active');
-            navLinks.classList.toggle('open');
-        });
-
         function handleNewsletterSubmit() {
             const emailInput = document.getElementById('footer-email');
-            if (emailInput && emailInput.value.trim()) {
-                alert('Thank you for subscribing!');
-                emailInput.value = '';
+            const email = emailInput.value.trim();
+            if (!email || !email.includes('@')) {
+                alert('Please enter a valid email address.');
+                return;
+            }
+            alert('Thank you for subscribing!');
+            emailInput.value = '';
+        }
+
+        // Guard against this block running twice (e.g. if property_script.js
+        // also wires up the hamburger) so listeners never get double-bound.
+        if (!window.__humbleNavInit) {
+            window.__humbleNavInit = true;
+
+            const hamburgerBtn = document.getElementById('hamburger');
+            const navMenu = document.getElementById('nav-links');
+
+            if (hamburgerBtn && navMenu) {
+                hamburgerBtn.addEventListener('click', function () {
+                    const isOpen = navMenu.classList.toggle('open');
+                    hamburgerBtn.classList.toggle('active', isOpen);
+                    hamburgerBtn.setAttribute('aria-expanded', isOpen);
+                    document.body.style.overflow = isOpen ? 'hidden' : '';
+                });
+
+                // Close menu when a link is clicked
+                navMenu.querySelectorAll('a').forEach(function (link) {
+                    link.addEventListener('click', function () {
+                        hamburgerBtn.classList.remove('active');
+                        navMenu.classList.remove('open');
+                        hamburgerBtn.setAttribute('aria-expanded', 'false');
+                        document.body.style.overflow = '';
+                    });
+                });
+
+                // Close the menu if the viewport is resized back to desktop width
+                window.addEventListener('resize', function () {
+                    if (window.innerWidth > 768 && navMenu.classList.contains('open')) {
+                        hamburgerBtn.classList.remove('active');
+                        navMenu.classList.remove('open');
+                        hamburgerBtn.setAttribute('aria-expanded', 'false');
+                        document.body.style.overflow = '';
+                    }
+                });
             }
         }
     </script>

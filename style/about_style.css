@@ -1,4 +1,5 @@
-:root {
+
+ :root {
     --primary-font-family: 'Poppins', sans-serif;
     --title-font-family: 'Rubik', sans-serif;
     --primary-accent: #69B99D;
@@ -26,7 +27,7 @@
 body {
     font-family: var(--primary-font-family);
     color: var(--text-light);
-    background-color: var(--primary-bg); /* FIX: was var(--p:rimary-bg) — invalid colon */
+    background-color: var(--primary-bg);
     overflow-x: hidden;
 }
 
@@ -114,7 +115,6 @@ body {
     flex-wrap: nowrap;
 }
 
-/* FIX: replaced .brand/.logo-icon/.logo-name with nav-brand/nav-logo/nav-site-name */
 .nav-brand {
     display: flex;
     align-items: center;
@@ -173,8 +173,42 @@ body {
     flex-shrink: 0;
 }
 
+/* ================= HAMBURGER ================= */
+.hamburger {
+    display: none;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 28px;
+    height: 20px;
+    cursor: pointer;
+    background: none;
+    border: none;
+    padding: 0;
+    z-index: 200;
+}
+
+.hamburger span {
+    display: block;
+    width: 100%;
+    height: 2.5px;
+    background: #1F2744;
+    border-radius: 3px;
+    transition: all 0.3s ease;
+}
+
+.hamburger.active span:nth-child(1) {
+    transform: translateY(8.75px) rotate(45deg);
+}
+
+.hamburger.active span:nth-child(2) {
+    opacity: 0;
+}
+
+.hamburger.active span:nth-child(3) {
+    transform: translateY(-8.75px) rotate(-45deg);
+}
+
 /* ================= HERO ================= */
-/* FIX: was .about.hero (two classes) — changed to .about-hero to match fixed HTML */
 .about-hero {
     background: linear-gradient(135deg, #1F2744 0%, #2d3d6e 100%);
     padding: 100px 0 90px;
@@ -534,7 +568,6 @@ body {
 }
 
 /* ================= FOOTER ================= */
-/* FIX: replaced bare footer with full footer styles matching rest of site */
 .footer-section {
     background: #111;
     color: #ddd;
@@ -685,64 +718,13 @@ body {
 }
 
 @media (max-width: 768px) {
-    .about-hero { padding: 70px 0; }
-    .about-hero h1 { font-size: 2.2rem; }
-    .about-section,
-    .about-features,
-    .about-stats,
-    .about-cta { padding: 70px 0; }
-    .feature-grid { grid-template-columns: 1fr; }
-    .stats-grid { grid-template-columns: repeat(2, 1fr); gap: 16px; }
-    .about-cta h2 { font-size: 2.2rem; }
-    .navbar .links a:not(.button-with-bg):not(.button-without-bg) { display: none; }
-    .navbar-buttons { margin-left: 0; }
-}
-
-@media (max-width: 480px) {
-    .stats-grid { grid-template-columns: 1fr 1fr; }
-    .about-hero h1 { font-size: 1.9rem; }
-}
-
-/* ================= HAMBURGER ================= */
-.hamburger {
-    display: none;
-    flex-direction: column;
-    justify-content: space-between;
-    width: 28px;
-    height: 20px;
-    cursor: pointer;
-    background: none;
-    border: none;
-    padding: 0;
-    z-index: 200;
-}
-
-.hamburger span {
-    display: block;
-    width: 100%;
-    height: 2.5px;
-    background: #1F2744;
-    border-radius: 3px;
-    transition: all 0.3s ease;
-}
-
-.hamburger.active span:nth-child(1) {
-    transform: translateY(8.75px) rotate(45deg);
-}
-
-.hamburger.active span:nth-child(2) {
-    opacity: 0;
-}
-
-.hamburger.active span:nth-child(3) {
-    transform: translateY(-8.75px) rotate(-45deg);
-}
-
-@media (max-width: 768px) {
     .hamburger {
         display: flex;
     }
 
+    /* .navbar itself stays a row (logo left, hamburger right).
+       The menu becomes a fullscreen fixed overlay toggled by JS
+       adding/removing the .open class. */
     .navbar .links,
     .nav-links {
         display: none;
@@ -766,7 +748,7 @@ body {
 
     .navbar .links a,
     .nav-links a {
-        display: block !important;
+        display: block;
         font-size: 20px;
         font-weight: 600;
         color: #1F2744;
@@ -785,72 +767,21 @@ body {
         align-items: center;
         gap: 16px;
         margin-left: 0;
-    }
-}
-@media (max-width: 768px) {
-
-    .links{
-        display: flex;
-        flex-direction: column;
-        gap: 15px;
-    }
-
-    .navbar{
-        flex-direction: column;
-        align-items: flex-start;
-    }
-
-    .navbar-buttons{
         margin-top: 10px;
     }
-}
-.navbar{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 20px;
-    position: relative;
-}
 
-.hamburger{
-    display: none;
-    flex-direction: column;
-    gap: 5px;
-    background: none;
-    border: none;
-    cursor: pointer;
+    .about-hero { padding: 70px 0; }
+    .about-hero h1 { font-size: 2.2rem; }
+    .about-section,
+    .about-features,
+    .about-stats,
+    .about-cta { padding: 70px 0; }
+    .feature-grid { grid-template-columns: 1fr; }
+    .stats-grid { grid-template-columns: repeat(2, 1fr); gap: 16px; }
+    .about-cta h2 { font-size: 2.2rem; }
 }
 
-.hamburger span{
-    width: 25px;
-    height: 3px;
-    background: #222;
-    border-radius: 5px;
+@media (max-width: 480px) {
+    .stats-grid { grid-template-columns: 1fr 1fr; }
+    .about-hero h1 { font-size: 1.9rem; }
 }
-
-/* MOBILE */
-@media(max-width: 768px){
-
-    .hamburger{
-        display: flex;
-        margin-left: auto;
-    }
-
-    .links{
-        display: none;
-        position: absolute;
-        top: 80px;
-        left: 0;
-        width: 100%;
-        background: white;
-        flex-direction: column;
-        align-items: center;
-        padding: 30px 0;
-        gap: 25px;
-    }
-
-    .links.active{
-        display: flex;
-    }
-}
- 

@@ -506,7 +506,7 @@
             .hamburger { display: flex; }
 
             .nav-links {
-                display: flex;
+                display: none;
                 position: fixed;
                 top: 80px; left: 0;
                 width: 100%;
@@ -535,23 +535,6 @@
             .login-right { padding: 40px 20px; }
             .name-row { grid-template-columns: 1fr; }
         }
-        @media (max-width: 768px) {
-
-    .links{
-        display: flex;
-        flex-direction: column;
-        gap: 15px;
-    }
-
-    .navbar{
-        flex-direction: column;
-        align-items: flex-start;
-    }
-
-    .navbar-buttons{
-        margin-top: 10px;
-    }
-}
     </style>
 </head>
 <body>
@@ -568,7 +551,7 @@
             <a href="services_index.html">Service</a>
             <a href="contact_index.html">Contact</a>
         </div>
-        <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+        <button class="hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false" aria-controls="nav-links">
             <span></span>
             <span></span>
             <span></span>
@@ -770,15 +753,29 @@
         const navLinks = document.getElementById('nav-links');
 
         hamburger.addEventListener('click', function () {
-            hamburger.classList.toggle('active');
-            navLinks.classList.toggle('open');
+            const isOpen = navLinks.classList.toggle('open');
+            hamburger.classList.toggle('active', isOpen);
+            hamburger.setAttribute('aria-expanded', isOpen);
+            document.body.style.overflow = isOpen ? 'hidden' : '';
         });
 
         navLinks.querySelectorAll('a').forEach(function (link) {
             link.addEventListener('click', function () {
                 hamburger.classList.remove('active');
                 navLinks.classList.remove('open');
+                hamburger.setAttribute('aria-expanded', 'false');
+                document.body.style.overflow = '';
             });
+        });
+
+        // Close the menu if the viewport is resized back to desktop width
+        window.addEventListener('resize', function () {
+            if (window.innerWidth > 768 && navLinks.classList.contains('open')) {
+                hamburger.classList.remove('active');
+                navLinks.classList.remove('open');
+                hamburger.setAttribute('aria-expanded', 'false');
+                document.body.style.overflow = '';
+            }
         });
 
         // ================= TAB SWITCHER =================

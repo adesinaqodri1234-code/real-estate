@@ -20,18 +20,18 @@
                 <div class="nav-logo">SQ</div>
                 <span class="nav-site-name">Humble Realty</span>
             </div>
-            <div class="links">
+            <div class="links" id="nav-links">
                 <a href="index.html">Home</a>
                 <a href="property_index.html">Property</a>
                 <a href="about_index.html">About</a>
                 <a href="services_index.html">Service</a>
-                <a href="contact_index.html">Contact</a>
+                <a href="contact_index.html" class="active">Contact</a>
                 <div class="navbar-buttons">
                     <a href="login.html" class="button-without-bg">Sign in</a>
                     <a href="login.html" class="button-with-bg">Login</a>
                 </div>
             </div>
-            <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+            <button class="hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false" aria-controls="nav-links">
     <span></span>
     <span></span>
     <span></span>
@@ -62,8 +62,8 @@
             <div class="info-card">
                 <i class="fas fa-envelope" aria-hidden="true"></i>
                 <h3>Email</h3>
-                <p><a href="mailto:info@luxhomes.com">info@luxhomes.com</a></p>
-                <p><a href="mailto:support@luxhomes.com">support@luxhomes.com</a></p>
+                <p><a href="mailto:info@humblerealty.com">info@humblerealty.com</a></p>
+                <p><a href="mailto:support@humblerealty.com">support@humblerealty.com</a></p>
             </div>
             <div class="info-card">
                 <i class="fas fa-clock" aria-hidden="true"></i>
@@ -98,6 +98,54 @@
         </div>
     </section>
 
+    <footer class="footer-section">
+        <div class="wrapper">
+            <div class="col-left">
+                <a href="index.html" class="footer-logo">
+                    <div class="footer-logo-icon">SQ</div>
+                    <span class="footer-logo-name">Humble Realty</span>
+                </a>
+                <p class="description">We have built our reputation as true local area experts.</p>
+                <div class="newsletter-form">
+                    <label for="footer-email">Subscribe to our newsletter</label>
+                    <div class="input-field">
+                        <input type="email" id="footer-email" placeholder="Enter your email address">
+                        <button type="button" onclick="handleNewsletterSubmit()">Submit</button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-right">
+                <div class="group">
+                    <p class="heading">Service</p>
+                    <a href="about_index.html">About us</a>
+                    <a href="services_index.html">Careers</a>
+                    <a href="services_index.html">Terms &amp; Conditions</a>
+                    <a href="services_index.html">Privacy &amp; Policy</a>
+                </div>
+                <div class="group">
+                    <p class="heading">Community</p>
+                    <a href="property_index.html">Find agents</a>
+                    <a href="services_index.html">Lifestyle</a>
+                    <a href="services_index.html">Legal Notice</a>
+                </div>
+                <div class="group">
+                    <p class="heading">Follow us on</p>
+                    <div class="social-icon">
+                        <a href="https://youtube.com" target="_blank" rel="noopener noreferrer" aria-label="YouTube">
+                            <img src="assets/Youtube.png" alt="YouTube">
+                        </a>
+                        <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+                            <img src="assets/Instagram.png" alt="Instagram">
+                        </a>
+                        <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+                            <img src="assets/Facebook.png" alt="Facebook">
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
     <script>
         function handleContactSubmit() {
             const name = document.getElementById('full-name').value.trim();
@@ -120,22 +168,55 @@
             document.getElementById('subject').value = '';
             document.getElementById('message').value = '';
         }
-        const hamburger = document.getElementById('hamburger');
-    const links = document.querySelector('.navbar .links') || document.querySelector('.nav-links');
 
-    hamburger.addEventListener('click', function () {
-        hamburger.classList.toggle('active');
-        links.classList.toggle('open');
-    });
+        function handleNewsletterSubmit() {
+            const emailInput = document.getElementById('footer-email');
+            const email = emailInput.value.trim();
+            if (!email || !email.includes('@')) {
+                alert('Please enter a valid email address.');
+                return;
+            }
+            alert('Thank you for subscribing!');
+            emailInput.value = '';
+        }
 
-    // Close menu when a link is clicked
-    links.querySelectorAll('a').forEach(function(link) {
-        link.addEventListener('click', function() {
-            hamburger.classList.remove('active');
-            links.classList.remove('open');
-        });
-    });
+        // Guard against this block running twice (e.g. if contact_script.js
+        // also wires up the hamburger) so listeners never get double-bound.
+        if (!window.__humbleNavInit) {
+            window.__humbleNavInit = true;
 
+            const hamburgerBtn = document.getElementById('hamburger');
+            const navMenu = document.getElementById('nav-links');
+
+            if (hamburgerBtn && navMenu) {
+                hamburgerBtn.addEventListener('click', function () {
+                    const isOpen = navMenu.classList.toggle('open');
+                    hamburgerBtn.classList.toggle('active', isOpen);
+                    hamburgerBtn.setAttribute('aria-expanded', isOpen);
+                    document.body.style.overflow = isOpen ? 'hidden' : '';
+                });
+
+                // Close menu when a link is clicked
+                navMenu.querySelectorAll('a').forEach(function (link) {
+                    link.addEventListener('click', function () {
+                        hamburgerBtn.classList.remove('active');
+                        navMenu.classList.remove('open');
+                        hamburgerBtn.setAttribute('aria-expanded', 'false');
+                        document.body.style.overflow = '';
+                    });
+                });
+
+                // Close the menu if the viewport is resized back to desktop width
+                window.addEventListener('resize', function () {
+                    if (window.innerWidth > 768 && navMenu.classList.contains('open')) {
+                        hamburgerBtn.classList.remove('active');
+                        navMenu.classList.remove('open');
+                        hamburgerBtn.setAttribute('aria-expanded', 'false');
+                        document.body.style.overflow = '';
+                    }
+                });
+            }
+        }
     </script>
 
 </body>

@@ -1,4 +1,5 @@
- *{
+
+*{
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -143,7 +144,12 @@ body {
     z-index: 1;
 }
 
-.left-bg-circle:first-of-type {
+/* FIX: was ".left-bg-circle:first-of-type", which matches the first <div>
+   sibling regardless of class (likely .left-content, not this circle) and
+   so silently matched nothing. Use an explicit class instead, matching the
+   pattern already used for the second circle (.two). Add class="left-bg-circle one"
+   to the first circle div in the HTML. */
+.left-bg-circle.one {
     width: 400px;
     height: 400px;
     top: -100px;
@@ -211,6 +217,8 @@ body {
 .input-icon {
     position: absolute;
     left: 14px;
+    top: 50%;
+    transform: translateY(-50%);
     font-size: 0.95rem;
     z-index: 1;
     pointer-events: none;
@@ -242,6 +250,8 @@ body {
 .toggle-password {
     position: absolute;
     right: 14px;
+    top: 50%;
+    transform: translateY(-50%);
     background: none;
     border: none;
     font-size: 0.8rem;
