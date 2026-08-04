@@ -394,6 +394,143 @@ body {
     transform: translateY(-2px);
 }
 
+/* ================= FOOTER ================= */
+.footer-section {
+    background: #111;
+    color: #ddd;
+    padding: 70px 0;
+    width: 100%;
+    margin-top: 0;
+}
+
+.footer-section .wrapper {
+    display: grid;
+    grid-template-columns: 1.5fr 2fr;
+    gap: 60px;
+}
+
+.footer-section .col-right {
+    display: flex;
+    gap: 40px;
+    justify-content: space-between;
+}
+
+.footer-section .group {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.footer-section .heading {
+    font-weight: 600;
+    color: #fff;
+    font-size: 15px;
+    margin-bottom: 4px;
+}
+
+.footer-section a {
+    text-decoration: none;
+    color: #aaa;
+    font-size: 14px;
+    transition: color 0.3s;
+}
+
+.footer-section a:hover {
+    color: #1abc9c;
+}
+
+.footer-section .description {
+    margin: 16px 0 24px;
+    font-size: 14px;
+    color: #aaa;
+    line-height: 1.7;
+}
+
+.newsletter-form label {
+    font-size: 13px;
+    font-weight: 600;
+    color: #fff;
+    display: block;
+    margin-bottom: 8px;
+}
+
+.input-field {
+    display: flex;
+}
+
+.input-field input[type="email"] {
+    padding: 10px;
+    border: none;
+    flex: 1;
+    font-family: var(--primary-font-family);
+    font-size: 14px;
+    outline: none;
+}
+
+.input-field button {
+    padding: 10px 18px;
+    background: #1abc9c;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+    font-weight: 600;
+    font-family: var(--primary-font-family);
+    transition: background 0.3s;
+}
+
+.input-field button:hover {
+    background: #16a085;
+}
+
+.social-icon {
+    display: flex;
+    gap: 12px;
+    margin-top: 8px;
+}
+
+.social-icon a {
+    display: inline-block;
+}
+
+.social-icon img {
+    width: 28px;
+    transition: transform 0.3s;
+}
+
+.social-icon img:hover {
+    transform: scale(1.15);
+}
+
+.footer-logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 16px;
+    text-decoration: none;
+}
+
+.footer-logo-icon {
+    width: 44px;
+    height: 44px;
+    background: #69B99D;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    font-family: 'Rubik', sans-serif;
+    font-size: 1rem;
+    font-weight: 700;
+    flex-shrink: 0;
+}
+
+.footer-logo-name {
+    font-family: 'Rubik', sans-serif;
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: #fff;
+}
+
 /* ================= RESPONSIVE ================= */
 @media (max-width: 992px) {
     .contact-content {
@@ -419,6 +556,14 @@ body {
 
     .navbar .navbar-buttons {
         margin-left: var(--spacing-md);
+    }
+
+    .footer-section .wrapper {
+        grid-template-columns: 1fr;
+    }
+
+    .footer-section .col-right {
+        flex-wrap: wrap;
     }
 }
 
